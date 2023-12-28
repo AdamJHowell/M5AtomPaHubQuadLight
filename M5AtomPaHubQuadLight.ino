@@ -9,13 +9,13 @@ unsigned long lastLoop = 0;                        // The time when the most rec
 unsigned long loopCount = 0;                       // The number of loops which have occurred.
 const unsigned long loopDelay = 10;                // The maximum value of 4,294,967,295 allows for a delay of about 49.7 days.
 const char * sketchName = "M5AtomPaHubQuadLight";  // The name of this sketch.
-const int PCA_ADDRESS = 0x70;
-const int startPort = 0x00;
-const int endPort = 0x77;
-const unsigned int numSensors = 4;
-uint16_t luxArray[4];
-M5_DLight sensorArray[4];
-unsigned int sensorAddresses[4];// = {0, 1, 4, 5};
+const int PCA_ADDRESS = 0x70;                      // The I2C address of the Pa.HUB.
+const int startPort = 0x00;                        // The first address to scan from.
+const int endPort = 0x77;                          // The last address to scan to.
+const unsigned int numSensors = 4;                 // The number of sensors.
+uint16_t luxArray[4];                              // An array to hold light values.
+M5_DLight sensorArray[4];                          // An array to hold sensors.
+unsigned int sensorAddresses[4];                   // An array of sensor port numbers {0, 1, 4, 5};
 
 
 void pcaSelect( uint8_t i )
