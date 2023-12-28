@@ -1,18 +1,14 @@
 /**
- * PCA9548AP_PortScanner.ino - I2C bus scanner for Arduino
- * This should work for the TCA series as well.
- *
- * Based on: https://learn.adafruit.com/adafruit-pca9548-8-channel-stemma-qt-qwiic-i2c-multiplexer/arduino
- * Based on: https://playground.arduino.cc/Main/I2cScanner/
+ * M5AtomPaHubQuadLight.ino - Read light values from four M5Stack DLIGHT sensors.
  */
 #include <M5_DLight.h>
 #include "Wire.h"
 
 
-unsigned long lastLoop = 0;						// Holds the time when the most recent loop completed.
-unsigned long loopCount = 0;
-const unsigned long loopDelay = 5000;					// The maximum value of 4,294,967,295 allows for a delay of about 49.7 days.
-const char * sketchName = "PCA9548AP_PortScanner";	// The name of this sketch.
+unsigned long lastLoop = 0;                        // The time when the most recent loop completed.
+unsigned long loopCount = 0;                       // The number of loops which have occurred.
+const unsigned long loopDelay = 10;                // The maximum value of 4,294,967,295 allows for a delay of about 49.7 days.
+const char * sketchName = "M5AtomPaHubQuadLight";  // The name of this sketch.
 const int PCA_ADDRESS = 0x70;
 const int startPort = 0x00;
 const int endPort = 0x77;
@@ -68,7 +64,7 @@ void loop()
 	unsigned long time = millis();
 	if( ( lastLoop == 0 ) || ( time - lastLoop ) > loopDelay )
 	{
-		Serial.printf( "\n%s will scan the DLight sensors.\n", sketchName );
+//		Serial.printf( "\n%s will scan the DLight sensors.\n", sketchName );
 		loopCount++;
 
     // Read all sensors before acting on the values.
@@ -77,12 +73,14 @@ void loop()
       pcaSelect( sensorAddresses[i] );
       luxArray[i] = sensorArray[i].getLUX();
     }
+    // Print values in a format the Arduino Serial Plotter can use.
+    Serial.printf( "L0:%d L1:%d L4:%d L5:%d\n", luxArray[0], luxArray[1], luxArray[2], luxArray[3] );
     // Print all values.
-    for( uint8_t i = 0; i < numSensors; i++ )
-    {
-      Serial.printf( "PCA Port # %d, lux: %d\n", sensorAddresses[i], luxArray[i] );
-    }
-    Serial.printf( "Completed %lu scans.  Next scan in %lu seconds.\n\n", loopCount, loopDelay / 1000 );
+//    for( uint8_t i = 0; i < numSensors; i++ )
+//    {
+//      Serial.printf( "PCA Port # %d, lux: %d\n", sensorAddresses[i], luxArray[i] );
+//    }
+//    Serial.printf( "Completed %lu scans.  Next scan in %lu seconds.\n\n", loopCount, loopDelay / 1000 );
 		lastLoop = millis();
   }
 }
