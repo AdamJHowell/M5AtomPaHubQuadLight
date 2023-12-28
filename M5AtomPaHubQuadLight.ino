@@ -71,11 +71,13 @@ void loop()
 		Serial.printf( "\n%s will scan the DLight sensors.\n", sketchName );
 		loopCount++;
 
+    // Read all sensors before acting on the values.
     for( uint8_t i = 0; i < numSensors; i++ )
     {
       pcaSelect( sensorAddresses[i] );
       luxArray[i] = sensorArray[i].getLUX();
     }
+    // Print all values.
     for( uint8_t i = 0; i < numSensors; i++ )
     {
       Serial.printf( "PCA Port # %d, lux: %d\n", sensorAddresses[i], luxArray[i] );
