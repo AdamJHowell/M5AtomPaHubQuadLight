@@ -6,9 +6,6 @@ debug_custom.json
 
 cmake-build-debug/
 .vscode/
-.idea/
-*.iml
-privateInfo.*
 networkVariables.h
 
 # Prerequisites
