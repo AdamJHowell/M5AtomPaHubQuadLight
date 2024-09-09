@@ -5,14 +5,13 @@
 #include "Wire.h"
 
 
-unsigned long lastLoop = 0;                      // The time when the most recent loop completed.
-const unsigned long loopDelay = 10;              // The maximum value of 4,294,967,295 allows for a delay of about 49.7 days.
-const char *sketchName = "M5AtomPaHubQuadLight"; // The name of this sketch.
-const int PCA_ADDRESS = 0x70;                    // The I2C address of the Pa.HUB.
-const unsigned int numSensors = 4;               // The number of sensors.
-uint16_t luxValues[4];                            // An array to hold light values.
-M5_DLight sensorArray[4];                        // An array to hold sensors.
-unsigned int sensorAddresses[4];                 // An array of sensor port numbers {0, 1, 4, 5};
+unsigned long lastLoop = 0;               // The time when the most recent loop completed.
+const unsigned long loopDelay = 10;       // The maximum value of 4,294,967,295 allows for a delay of about 49.7 days.
+const int PCA_ADDRESS = 0x70;             // The I2C address of the Pa.HUB.
+const unsigned int numSensors = 4;        // The number of sensors.
+uint16_t luxValues[numSensors];           // An array to hold light values.
+M5_DLight sensorArray[numSensors];        // An array to hold sensors.
+unsigned int sensorAddresses[numSensors]; // An array of sensor port numbers {0, 1, 4, 5};
 
 
 /*
