@@ -1,8 +1,11 @@
 /**
- * M5AtomPaHubQuadLight.ino - Read light values from four M5Stack DLIGHT sensors.
+ * M5AtomPaHubQuadLight.ino
+ * Use an M5 Stack Atom Lite, connected to an M5 Stack PaHUB,
+ * to read values from four M5Stack DLIGHT sensors.
+ * Requires the https://github.com/m5stack/M5-DLight library.
  */
 #include <M5_DLight.h>
-#include "Wire.h"
+#include <Wire.h>
 
 
 unsigned long lastLoop = 0;               // The time when the most recent loop completed.
